@@ -2,11 +2,14 @@ from django.db import models
 
 class Category(models.Model):
     name = models.CharField(max_length = 50)
+    def __str__(self) -> str:
+        return self.name
 
 
 
 
 class Book(models.Model):
+
 
     status_book = [
         ('available', 'available'),
@@ -26,3 +29,6 @@ class Book(models.Model):
     status = models.CharField(max_length=50, choices = status_book )
 
     category = models.ForeignKey(Category, on_delete = models.PROTECT)
+
+    def __str__(self) -> str:
+        return self.title
