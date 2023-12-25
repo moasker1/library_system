@@ -1,7 +1,12 @@
 from django.shortcuts import render
+from .models import *
 
 def index(request):
-    return render(request, 'pages/index.html')
+    context = {
+        'book': Book.objects.all(),
+
+    }
+    return render(request, 'pages/index.html', context)
 
 def books(request):
     return render(request, 'pages/books.html')
