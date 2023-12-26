@@ -3,6 +3,7 @@ from .models import *
 
 def index(request):
     context = {
+        'category': Category.objects.all(),
         'book': Book.objects.all(),
 
     }
