@@ -1,10 +1,12 @@
 from django.shortcuts import render
 from .models import *
+from .forms import BookForm
 
 def index(request):
     context = {
         'category': Category.objects.all(),
         'book': Book.objects.all(),
+        'form': BookForm()
 
     }
     return render(request, 'pages/index.html', context)
