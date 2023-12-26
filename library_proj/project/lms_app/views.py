@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import *
 from .forms import BookForm, CategoryForm
 
@@ -34,9 +34,23 @@ def books(request):
     }
     return render(request, 'pages/books.html', context)
 
+def update(request, id):
+    book_id = Book.objects.get(id = id)     # get id  = the id of the object (book)
+    if request.method == 'POST':
+        book_save = BookForm(request.POST, request.FILES, instance = book_id)
+        if book_save.is_valid():
+            book_save.save()
+            return redirect('/')
+
+    else:
+        book_save = BookForm(instance=book_id)
+    context = {
+        'form' : book_save,
+    }
+
+    return render(request, 'pages/update.html', context)
+
 def delete(request):
     return render(request, 'pages/delete.html')
 
-def update(request):
-    return render(request, 'pages/update.html')
 
