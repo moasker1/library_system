@@ -3,6 +3,13 @@ from .models import *
 from .forms import BookForm
 
 def index(request):
+    if request.method == 'POST':
+        add_book = BookForm(request.POST, request.FILES)
+        if add_book.is_valid():
+            add_book.save()
+        else:
+            print(add_book.errors)
+
     context = {
         'category': Category.objects.all(),
         'book': Book.objects.all(),
