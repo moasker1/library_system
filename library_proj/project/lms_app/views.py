@@ -10,7 +10,10 @@ def index(request):
     return render(request, 'pages/index.html', context)
 
 def books(request):
-    return render(request, 'pages/books.html')
+    context = {
+        'category': Category.objects.all(),
+    }
+    return render(request, 'pages/books.html', context)
 
 def delete(request):
     return render(request, 'pages/delete.html')
