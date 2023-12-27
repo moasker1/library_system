@@ -53,6 +53,11 @@
 </script>
 
 <script>
+        $("#rentaldays").keyup(function() {
+            $("#totalrental").val($("#rentaldays").val() * $("#rentalprice").val());
+        });
+        
+
   {% for book in book %}
     $(".cat{{ book.category.id }}").click(function() {
         $(".bookhide").hide();
